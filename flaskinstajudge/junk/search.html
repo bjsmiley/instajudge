@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+    <h1>Search as <small>{{session.username}}</small></h1>
+    <div class="row justify-content-center mt-3">
+        <form class="col-lg-6" id="search-form" name="search-form" action="" method="POST">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" value={{ request.form.username }}>
+            </div>
+            <button type="submit" id="search-btn" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    {% include 'includes/_progress.html' %}
+
+    {% if profile %}
+    <br>
+    <h2 class="d-inline-block mr-3" >Tags</h2> 
+            <span class="badge badge-pill badge-success">Confident</span>
+            <span class="badge badge-pill badge-warning">Semi-confident</span>
+            <span class="badge badge-pill badge-danger">Not confident</span>
+    <hr>
+        <div>
+            {% for tag in profile %}
+                {% if tag.prob > 0.80 %}
+                    <span class="badge badge-pill badge-success">{{tag.name}} ({{tag.count}})</span>
+                {% elif tag.prob > 0.60 %}
+                    <span class="badge badge-pill badge-warning">{{tag.name}} ({{tag.count}})</span>
+                {% else %}
+                    <span class="badge badge-pill badge-danger">{{tag.name}} ({{tag.count}})</span>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+
+{% endblock %}

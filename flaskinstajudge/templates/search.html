@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+    <script type="text/javascript" src="{{ url_for('static', filename = 'javascript/search.js') }}"></script>
+
+    <h1>Search as <small>{{session.username}}</small></h1>
+    <div class="row justify-content-center mt-3">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" id="usernameField" class="form-control"  value="">
+                <span id="username-error-display" class="text-danger"></span>
+            </div>
+            <button type="submit" id="search-btn-test" class="btn btn-primary">Submit</button>
+        </div>  
+    </div>
+
+    <br>
+    
+    <div id="progress-section">
+        <div>
+            <span id="instagram-scraper-loader"></span>
+            <img id="instagram-scraper-image" height="30" width="30" style="display:none">
+        </div>
+        <div>
+            <span id="clarifai-loader"></span>
+            <img id="clarifai-loader-image" height="30" width="30" style="display:none">
+        </div>
+    </div>
+
+    <div id="profile-section" style="display:none">
+
+        <div id="tag-section">
+
+            <div id="tag-header">
+                <br>
+                <h1 class='d-inline-block mr-3'>Tags</h1>
+                <span class='badge badge-pill badge-success mr-1'>Confident</span>
+                <span class='badge badge-pill badge-warning mr-1'>Semi-confident</span>
+                <span class='badge badge-pill badge-danger mr-1'>Not confident</span>
+                <span class="float-right mt-5 text-secondary">Click on a tag to view photos</span>
+                <hr>
+            </div>
+            <div id="tag-body"></div>
+        </div>
+
+        <div id="photo-display-section">
+            <div id="photo-display-header">
+                <br>
+                <h1 id="photo-display-title" class='d-inline-block mr-3'>[numberOfPhotos] Photo(s) for [tagName] tag</h1>
+                <span class="float-right mt-5 text-secondary">Hover over preview to enlarge</span>
+                <hr>
+            </div>
+            <div id="photo-display-body" class="row"></div>
+        </div>
+
+        <br>
+        <br>
+
+    </div>
+
+    
+
+
+{% endblock %}

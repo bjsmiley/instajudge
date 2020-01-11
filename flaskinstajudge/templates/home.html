@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+    <div class="jumbotron text-center">
+        <h1>Welcome to Instajudge</h1>
+        <p class="lead">This application is written in python using the Flask framework to judge an instagram account.</p>
+            <div class="text-center">
+                {% if session.logged_in == NULL %}
+                <a href="/public" class="btn btn-primary btn-lg">Search</a>
+                <a href="/login" class="btn btn-success btn-lg">Login</a>
+                {% else %}
+                <a href="/search" class="btn btn-primary btn-lg">Search</a>
+                <a href="/logout" class="btn btn-danger btn-lg">Logout</a>
+                {% endif %}
+            </div>
+
+    </div>
+{% endblock %}
